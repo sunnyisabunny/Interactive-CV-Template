@@ -1,0 +1,116 @@
+:root{
+  --bg: #ffffff;
+  --card-bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #3b82f6;
+  --card-radius: 16px;
+  --shadow: 0 6px 30px rgba(15,23,42,0.08);
+  --dot-size: 12px;
+}
+
+[data-theme="dark"]{
+  --bg: #0b1020;
+  --card-bg: #0f1724;
+  --text: #e6eef8;
+  --muted: #9aa6bd;
+  --accent: #60a5fa;
+  --shadow: 0 10px 40px rgba(2,6,23,0.6);
+}
+
+/* Page center */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.page-wrapper{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+}
+
+/* Main CV card */
+.cv-card{
+  width:100%;
+  max-width:980px;
+  background:var(--card-bg);
+  border-radius:var(--card-radius);
+  box-shadow:var(--shadow);
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* Header */
+.cv-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.profile{display:flex;gap:16px;align-items:center}
+.avatar{
+  width:72px;height:72px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent), #7c3aed);
+  color:white;display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:20px;
+}
+.meta .name{margin:0;font-size:20px}
+.meta .title{margin:2px 0 0 0;color:var(--muted)}
+.meta .contact{margin:6px 0 0 0;color:var(--muted);font-size:14px}
+.theme-toggle button{
+  background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 12px;border-radius:10px;cursor:pointer;
+}
+
+/* Skills */
+.skills h2{margin:0 0 8px 0}
+.skills-grid{
+  display:flex;gap:20px;flex-wrap:wrap;
+}
+.skill{width:120px;text-align:center}
+.circle{width:120px;height:120px;margin:0 auto;cursor:pointer}
+.progress-ring{width:100%;height:100%}
+.progress-ring .bg{fill:none;stroke:var(--muted);stroke-width:2.8}
+.progress-ring .progress{fill:none;stroke:var(--accent);stroke-width:2.8;stroke-linecap:round;transition:stroke 250ms ease}
+.progress-ring .percent{font-size:6px;text-anchor:middle;fill:var(--text)}
+
+/* Timeline */
+.timeline h2{margin:0 0 8px 0}
+.timeline-wrap{
+  display:flex;flex-direction:column;gap:18px;margin-top:12px;
+}
+.tl-item{display:flex;gap:16px;align-items:flex-start;cursor:default;transition:transform 200ms ease}
+.dot{width:var(--dot-size);height:var(--dot-size);border-radius:50%;background:var(--muted);margin-top:6px;transition:transform 200ms, background 200ms}
+.tl-content{flex:1;padding:8px 12px;border-radius:8px;transition:background 200ms, color 200ms}
+.tl-content h3{margin:0;font-size:15px}
+.tl-content p{margin:6px 0 0 0;color:var(--muted);font-size:14px}
+
+/* Footer */
+.cv-footer{display:flex;justify-content:flex-end;color:var(--muted)}
+
+/* Hover / active visuals applied by JS classes */
+.circle:hover .progress{ /* handled by JS to set color on hover */ }
+.tl-item.hovered .dot{transform:scale(1.25);background:var(--accent)}
+.tl-item.hovered .tl-content{background:rgba(59,130,246,0.06)}
+.tl-item.hovered .tl-content h3{color:var(--accent)}
+
+/* Responsive */
+@media (max-width:720px){
+  .cv-card{padding:18px}
+  .skills-grid{justify-content:space-between}
+  .skill{width:30%}
+}
+@media (max-width:480px){
+  .profile{flex-direction:row;gap:12px}
+  .skills-grid{gap:12px}
+  .skill{width:45%}
+}
